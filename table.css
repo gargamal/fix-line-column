@@ -59,6 +59,7 @@ td, th {
     border: 1px solid #DDDDDD;
 }
 
+th:first-child,
 th {
     text-align: center;
     background-color: #F3F3F3;
