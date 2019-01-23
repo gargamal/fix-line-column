@@ -35,12 +35,32 @@ const objFrozenHeadFirstLine = function () {
 
     };
 
-    function highlightColumn(index) {
-        manageHighlightColumn(index, "highlightLine");
+    const getIndexColumn = function (that) {
+        for (let i = 0, j = 0; i < that.parentNode.childNodes.length; i++) {
+            let childNode = that.parentNode.childNodes[i];
+            if (childNode.nodeName === 'TD') {
+                if (childNode === that) {
+                    return j;
+                }
+                j++;
+            }
+        }
+
+        return -1;
+    };
+
+    function highlightColumn(that) {
+        let index = getIndexColumn(that);
+        if (index > -1) {
+            manageHighlightColumn(index, "highlightLine");
+        }
     }
 
-    function noHighlightColumn(index) {
-        manageHighlightColumn(index, "");
+    function noHighlightColumn(that) {
+        let index = getIndexColumn(that);
+        if (index > -1) {
+            manageHighlightColumn(index, "");
+        }
     }
 
     return {
